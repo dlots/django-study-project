@@ -1,0 +1,11 @@
+{% extends 'shop/base.html' %}
+{% block title %}
+Cool Sock Shop
+{% endblock %}
+{% block content %}
+{% for product in products %}
+<a href="{% url 'product_by_id' product.id %}"><img src="{{ product.image.url }}" alt="{{ product.name }}"><br/>
+<b>{{ product.name }}</b></a> <i>{{ product.price }} RUB</i>
+<hr/>
+{% endfor %}
+{% endblock %}

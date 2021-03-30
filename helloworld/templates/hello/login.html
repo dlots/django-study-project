@@ -1,0 +1,11 @@
+{%  load static %}
+<img src="{% static 'hello/ae86c173780ea67588c3b06849f86f2c.jpg' %}" alt="My face"/>
+<form method="POST">
+    {% csrf_token %}
+    Username: <input type="text" name="username"/><br/>
+    Password: <input type="password" name="password"/><br/>
+    <input type="submit" value="Login"/>
+</form>
+{% if error %}
+<p style="color:red">{{ error }}</p>
+{% endif %}

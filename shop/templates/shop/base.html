@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Shop{% endblock %}</title>
+</head>
+<body>
+<p style="text-align:left;">
+<b><a href="/shop/">COOL SOCK SHOP</a></b>
+<span style="float:right;">
+{% if request.user.is_authenticated %}
+Hi, <a href=>{{ request.user.username }}</a>! |
+<a href="{% url 'shop_logout' %}?next={{ request.path }}">Log out</a> |
+<a href="{% url 'cart' %}">Cart</a>
+{% else %}
+Hi, stranger! |
+<a href="{% url 'shop_login' %}?next={{ request.path }}">Log In</a>/
+<a href="{% url 'shop_signup' %}">Sign Up</a> |
+<a href>Cart</a>
+{% endif %}
+</span>
+</p>
+<hr/>
+{% block content %}{% endblock %}
+</body>
+</html>

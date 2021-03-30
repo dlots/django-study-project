@@ -1,0 +1,23 @@
+{% extends 'shop/base.html' %}
+{% block title %}
+Cart
+{% endblock %}
+{% block content %}
+{% if empty %}
+    <h1>The cart is empty!</h1>
+{% else %}
+    {% for position in positions %}
+        <img src="{{ position.0.image.url }}" alt="{{ position.0.name }}"><br/>
+        {{ position.1 }}x <b>{{ position.0.name }}</b>, <i>{{ position.2 }} RUB</i>
+        <hr/>
+    {% endfor %}
+    <h1>Total cost: {{ total_cost }} RUB</h1>
+    {% for error in errors %}
+        {{ error }}<br/>
+    {% endfor %}
+    <form action="{% url 'cart' %}" method="POST">
+    {% csrf_token %}
+    <input type="submit" value="Checkout">
+    </form>
+{% endif %}
+{% endblock %}
